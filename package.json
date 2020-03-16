@@ -1,0 +1,29 @@
+{
+  "name": "@migalons/angular-wdio-builder",
+  "version": "1.0.0",
+  "description": "Angular builder for running functional test based on webdriver.io runner.",
+  "main": "lib/test.js",
+  "types": "lib/test.d.ts",
+  "files": [
+    "lib/**/*",
+    "builders.json"
+  ],
+  "builders": "builders.json",
+  "author": "migalons",
+  "license": "ISC",
+  "scripts": {
+    "build": "tsc",
+    "test": "ts-node node_modules/jasmine/bin/jasmine src/command/**/*.spec.ts"
+  },
+  "dependencies": {
+    "@angular-devkit/architect": "^0.900.5"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.5.9",
+    "jasmine": "^3.5.0",
+    "jasmine-node": "^3.0.0",
+    "typescript": "^3.8.3",
+    "@types/node": "^13.9.0",
+    "ts-node": "^8.6.2"
+  }
+}

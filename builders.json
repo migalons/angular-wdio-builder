@@ -1,0 +1,9 @@
+{
+  "builders": {
+    "test": {
+      "implementation": "./lib/test.js",
+      "schema": "./lib/schema.json",
+      "description": "Runs functional test using webdriver.io runner."
+    }
+  }
+}

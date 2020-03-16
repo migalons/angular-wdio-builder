@@ -1,0 +1,5 @@
+node_modules
+.idea
+.npmrc
+**/*.log
+dist

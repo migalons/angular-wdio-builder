@@ -3,3 +3,5 @@ node_modules
 .npmrc
 **/*.log
 dist
+lib/
+.DS_Store

@@ -1,18 +1,23 @@
 {
   "name": "@migalons/angular-wdio-builder",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Angular builder for running functional test based on webdriver.io runner.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/migalons/angular-wdio-builder"
+  },
   "main": "lib/test.js",
   "types": "lib/test.d.ts",
-  "publishConfig": {
-    "registry": "http://localhost:8081/repository/npm-private/"
-  },
   "files": [
     "lib/**/*",
     "builders.json"
   ],
   "builders": "builders.json",
-  "author": "migalons",
+  "author": {
+    "name": "Miguel Angel Alonso",
+    "email": "migalons74@gmail.com",
+    "url": "https://github.com/migalons"
+  },
   "license": "ISC",
   "scripts": {
     "build": "tsc",

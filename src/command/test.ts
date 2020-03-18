@@ -1,28 +1,42 @@
 import { BuilderContext, BuilderOutput, createBuilder } from '@angular-devkit/architect';
 import { JsonObject } from '@angular-devkit/core';
-import * as childProcess from 'child_process';
 
 interface Options extends JsonObject {
     command: string;
     args: string[];
 }
 
-export default createBuilder(( options: Options, context: BuilderContext ): Promise<BuilderOutput> => {
-    const child = childProcess.spawn(options.command, options.args);
+export default createBuilder(async ( options: Options, context: BuilderContext ): Promise<BuilderOutput> => {
+    if(!isWdioInstalled()) {
+        context.logger.error("Wdio not installed. Can not run command. Exiting.")
+        context.reportStatus('Failed')
+        return Promise.resolve({success: false})
+    }
 
-    context.reportStatus(`Executing "${options.command}"...`);
+    if(options.devServerTarget) {
+        const [project, target, configuration] = (options.devServerTarget as string).split(':');
+        await context.scheduleTarget({project: project, 'target': target, configuration: configuration});
+    }
 
-    child.stdout.on('data', data => {
-        context.logger.info(data.toString());
-    });
-    child.stderr.on('data', data => {
-        context.logger.error(data.toString());
-    });
+    const Launcher = require('@wdio/cli').default;
+    const wdio = new Launcher(options.configUrl, options.opts)
 
-    return new Promise(resolve => {
+    return wdio.run().then((code: number) => {
         context.reportStatus(`Done.`);
-        child.on('close', code => {
-            resolve({success: code === 0});
-        });
-    });
+        return { 'success': code === 0}
+    }, (error: any) => {
+        context.reportStatus(`Failed.`);
+        context.logger.error('Launcher failed to start the test', error.stacktrace)
+        return { 'success': false }
+    })
 });
+
+function isWdioInstalled(): boolean {
+    try {
+        // @ts-ignore
+        const Launcher = require('@wdio/cli').default;
+        return true;
+    } catch (err) {
+        return false;
+    }
+}

@@ -2,14 +2,12 @@
   "$schema": "http://json-schema.org/schema",
   "type": "object",
   "properties": {
-    "command": {
-      "type": "string"
+    "configUrl": {
+      "type": "string",
+      "default": "e2e/wdio.conf.js"
     },
-    "args": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+    "opts": {
+      "type": "object"
     }
   }
 }

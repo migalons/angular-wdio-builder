@@ -4,6 +4,9 @@
   "description": "Angular builder for running functional test based on webdriver.io runner.",
   "main": "lib/test.js",
   "types": "lib/test.d.ts",
+  "publishConfig": {
+    "registry": "http://localhost:8081/repository/npm-private/"
+  },
   "files": [
     "lib/**/*",
     "builders.json"
@@ -16,7 +19,8 @@
     "test": "ts-node node_modules/jasmine/bin/jasmine src/command/**/*.spec.ts"
   },
   "dependencies": {
-    "@angular-devkit/architect": "^0.900.5"
+    "@angular-devkit/architect": "^0.900.6",
+    "@angular-devkit/core": "^9.0.0"
   },
   "devDependencies": {
     "@types/jasmine": "^3.5.9",

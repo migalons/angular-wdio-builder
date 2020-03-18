@@ -6,8 +6,8 @@
       "type": "string",
       "default": "e2e/wdio.conf.js"
     },
-    "opts": {
-      "type": "object"
+    "devServerTarget": {
+      "type": "string"
     }
   }
 }

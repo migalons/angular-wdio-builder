@@ -8,14 +8,14 @@ interface Options extends JsonObject {
 
 export default createBuilder(async ( options: Options, context: BuilderContext ): Promise<BuilderOutput> => {
     if(!isWdioInstalled()) {
-        context.logger.error("Wdio not installed. Can not run command. Exiting.")
-        context.reportStatus('Failed')
-        return Promise.resolve({success: false})
+        context.logger.error("@wdio/cli not installed. Can not run command. Exiting.");
+        context.reportStatus('Failed');
+        return Promise.resolve({"success": false, "error": "@wdio/cli not installed. Can not run command. Exiting."})
     }
 
     if(options.devServerTarget) {
         const [project, target, configuration] = (options.devServerTarget as string).split(':');
-        await context.scheduleTarget({project: project, 'target': target, configuration: configuration});
+        await context.scheduleTarget({project, target, configuration});
     }
 
     const Launcher = require('@wdio/cli').default;
@@ -40,3 +40,4 @@ function isWdioInstalled(): boolean {
         return false;
     }
 }
+

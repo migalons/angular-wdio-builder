@@ -21,16 +21,16 @@ npm install @migalons/angular-wdio-builder --save-dev
 
 For enabling your e2e test using angular builders, you just need to use this builder for running your e2e test:
 
-```json
+```
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-wdio-builder-test": {
-      .....
+    "my-awesome-project": {
+      ...
       "architect": {
-        ......
+        ...
         "e2e": {
           "builder": "@migalons/angular-wdio-builder:test",
           "options": {
@@ -45,12 +45,12 @@ For enabling your e2e test using angular builders, you just need to use this bui
         }
       }
     }
-  ......
+  ...
 }
 ```
 
 ## Example
 
-You can find an example of a project with aungular application with e2e test implemented using this builder for include wdio test into angular workspace here:
+You can find an example of a project with angular application with e2e test implemented using this builder for include wdio test into angular workspace here:
 
 https://github.com/migalons/angular-wdio-builder-demo

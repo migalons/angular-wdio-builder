@@ -35,11 +35,11 @@ For enabling your e2e test using angular builders, you just need to use this bui
           "builder": "@migalons/angular-wdio-builder:test",
           "options": {
             "wdioConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-wdio-builder-test:serve"
+            "devServerTarget": "my-awesome-project:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-wdio-builder-test:serve:production"
+              "devServerTarget": "my-awesome-project:serve:production"
             }
           }
         }

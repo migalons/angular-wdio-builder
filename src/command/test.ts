@@ -19,7 +19,7 @@ export default createBuilder(async ( options: Options, context: BuilderContext )
     }
 
     const Launcher = require('@wdio/cli').default;
-    const wdio = new Launcher(options.configUrl, options.opts)
+    const wdio = new Launcher(options.wdioConfig, options.wdioOptions);
 
     return wdio.run().then((code: number) => {
         context.reportStatus(`Done.`);

@@ -8,6 +8,10 @@
     },
     "devServerTarget": {
       "type": "string"
+    },
+    "wdioOptions": {
+      "type": "object",
+      "default": {}
     }
   }
 }

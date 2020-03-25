@@ -10,6 +10,9 @@ Enables include wdio laucher into angular workspace (angular.json). Replaces pro
 
 wdio client is not installed. You must install this package by yourself, among other related packages (@wdio/sinc, services, plugins, etc.)
 
+## Requirements
+
+- @angular/cli >= @8.0.0
 
 ## Usage
 
@@ -34,13 +37,21 @@ For enabling your e2e test using angular builders, you just need to use this bui
         "e2e": {
           "builder": "@migalons/angular-wdio-builder:test",
           "options": {
-            "wdioConfig": "e2e/protractor.conf.js",
+            "wdioConfig": "e2e/wdio.conf.js",
             "devServerTarget": "my-awesome-project:serve"
           },
           "configurations": {
             "production": {
+              "wdioConfig": "e2e/wdio-prod.conf.js",
+              "devServerTarget": "my-awesome-project:serve:production"
+            },
+            "dev": {
+              "wdioOptions": {
+                "logLevel": "debug"
+              }
               "devServerTarget": "my-awesome-project:serve:production"
             }
+
           }
         }
       }
@@ -48,6 +59,12 @@ For enabling your e2e test using angular builders, you just need to use this bui
   ...
 }
 ```
+
+This builders, accepts three parameters:
+
+- wdioConfig: URL for wdio cli configuration (defaults to "./e2e/wdio.conf.js).
+- wdioOptons: Custom options for overriding provided configuration (wdioConfig).
+- devServerTarget: project target and configuration to be scheduled before running e2e test (i.e. serve app).
 
 ## Example
 

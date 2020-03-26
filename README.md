@@ -47,7 +47,7 @@ For enabling your e2e test using angular builders, you just need to use this bui
             },
             "dev": {
               "wdioOptions": {
-                "logLevel": "debug"
+                  "port": 4567  // whatever options accepted by wdio cli
               }
               "devServerTarget": "my-awesome-project:serve:production"
             }
@@ -63,7 +63,7 @@ For enabling your e2e test using angular builders, you just need to use this bui
 This builders, accepts three parameters:
 
 - wdioConfig: URL for wdio cli configuration (defaults to "./e2e/wdio.conf.js).
-- wdioOptons: Custom options for overriding provided configuration (wdioConfig).
+- wdioOptons: Custom options for overriding provided configuration (wdioConfig). See [wdio cli options](https://webdriver.io/docs/clioptions.html) for more information.
 - devServerTarget: project target and configuration to be scheduled before running e2e test (i.e. serve app).
 
 ## Example

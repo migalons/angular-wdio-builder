@@ -1,6 +1,6 @@
 {
   "name": "@migalons/angular-wdio-builder",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Angular builder for running functional test based on webdriver.io runner.",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "email": "migalons74@gmail.com",
     "url": "https://github.com/migalons"
   },
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "build": "tsc",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",

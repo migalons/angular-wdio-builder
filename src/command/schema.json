@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/schema",
   "type": "object",
   "properties": {
-    "configUrl": {
+    "wdioConfig": {
       "type": "string",
       "default": "e2e/wdio.conf.js"
     },

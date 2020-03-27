@@ -1,12 +1,13 @@
-import { BuilderContext, BuilderOutput, createBuilder } from '@angular-devkit/architect';
+import { BuilderContext, BuilderOutput, createBuilder, targetFromTargetString } from '@angular-devkit/architect';
 import { JsonObject } from '@angular-devkit/core';
 
 interface Options extends JsonObject {
-    command: string;
-    args: string[];
+    devServerTarget: string;
+    wdioConfig: string;
+    wdioOptions: {};
 }
 
-export default createBuilder(async ( options: Options, context: BuilderContext ): Promise<BuilderOutput> => {
+export const runWdioTest =  async ( options: Options, context: BuilderContext ): Promise<BuilderOutput> => {
     if(!isWdioInstalled()) {
         context.logger.error("@wdio/cli not installed. Can not run command. Exiting.");
         context.reportStatus('Failed');
@@ -14,10 +15,11 @@ export default createBuilder(async ( options: Options, context: BuilderContext )
     }
 
     if(options.devServerTarget) {
-        const [project, target, configuration] = (options.devServerTarget as string).split(':');
-        await context.scheduleTarget({project, target, configuration});
+        const result = await (context.scheduleTarget(targetFromTargetString(options.devServerTarget)).then(target => target.result));
+        if(!result.success) {
+            return Promise.resolve({"success": false, "error": `${options.devServerTarget} failed. Can not run command. Exiting`})
+        }
     }
-
     const Launcher = require('@wdio/cli').default;
     const wdio = new Launcher(options.wdioConfig, options.wdioOptions);
 
@@ -29,7 +31,9 @@ export default createBuilder(async ( options: Options, context: BuilderContext )
         context.logger.error('Launcher failed to start the test', error.stacktrace)
         return { 'success': false }
     })
-});
+}
+
+export default createBuilder(runWdioTest);
 
 function isWdioInstalled(): boolean {
     try {

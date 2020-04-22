@@ -12,6 +12,15 @@
     "wdioOptions": {
       "type": "object",
       "default": {}
+    },
+    "port": {
+      "type": "number"
+    },
+    "host": {
+      "type": "string"
+    },
+    "disableHostCheck": {
+      "type": "boolean"
     }
   }
 }

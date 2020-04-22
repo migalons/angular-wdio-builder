@@ -64,7 +64,10 @@ This builders, accepts three parameters:
 
 - wdioConfig: URL for wdio cli configuration (defaults to "./e2e/wdio.conf.js).
 - wdioOptons: Custom options for overriding provided configuration (wdioConfig). See [wdio cli options](https://webdriver.io/docs/clioptions.html) for more information.
-- devServerTarget: project target and configuration to be scheduled before running e2e test (i.e. serve app).
+- devServerTarget: Project target and configuration to be scheduled before running e2e test (i.e. serve app).
+- port: Serve angular application using a custom port
+- host: Host to listen on
+- disableHostCheck: Don't verify connected clients are part of allowed hosts.
 
 ## Example
 

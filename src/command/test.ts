@@ -5,6 +5,9 @@ interface Options extends JsonObject {
     devServerTarget: string;
     wdioConfig: string;
     wdioOptions: {};
+    port: number;
+    host: string;
+    disableHostCheck: boolean;
 }
 
 export const runWdioTest =  async ( options: Options, context: BuilderContext ): Promise<BuilderOutput> => {
@@ -15,7 +18,9 @@ export const runWdioTest =  async ( options: Options, context: BuilderContext ):
     }
 
     if(options.devServerTarget) {
-        const result = await (context.scheduleTarget(targetFromTargetString(options.devServerTarget)).then(target => target.result));
+        const result = await (context.scheduleTarget(targetFromTargetString(options.devServerTarget),
+            {port: options.port, host: options.host, disableHostCheck: options.disableHostCheck})
+            .then(target => target.result));
         if(!result.success) {
             return Promise.resolve({"success": false, "error": `${options.devServerTarget} failed. Can not run command. Exiting`})
         }

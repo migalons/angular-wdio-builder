@@ -1,6 +1,6 @@
 {
   "name": "@migalons/angular-wdio-builder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Angular builder for running functional test based on webdriver.io runner.",
   "repository": {
     "type": "git",

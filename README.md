@@ -49,9 +49,11 @@ For enabling your e2e test using angular builders, you just need to use this bui
               "wdioOptions": {
                   "port": 4567  // whatever options accepted by wdio cli
               }
-              "devServerTarget": "my-awesome-project:serve:production"
+              "devServerTarget": "my-awesome-project:serve:production",
+              "port": 4201,
+              "host": "0.0.0.0",
+              "disableHostCheck: true"
             }
-
           }
         }
       }

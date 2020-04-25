@@ -18,8 +18,10 @@ export const runWdioTest =  async ( options: Options, context: BuilderContext ):
     }
 
     if(options.devServerTarget) {
-        const result = await (context.scheduleTarget(targetFromTargetString(options.devServerTarget),
-            {port: options.port, host: options.host, disableHostCheck: options.disableHostCheck})
+        const devServerTargetOptions: any = {port: options.port, host: options.host, disableHostCheck: options.disableHostCheck}
+        Object.keys(devServerTargetOptions).forEach(key => devServerTargetOptions[key] === undefined && delete devServerTargetOptions[key])
+
+        const result = await (context.scheduleTarget(targetFromTargetString(options.devServerTarget),devServerTargetOptions)
             .then(target => target.result));
         if(!result.success) {
             return Promise.resolve({"success": false, "error": `${options.devServerTarget} failed. Can not run command. Exiting`})

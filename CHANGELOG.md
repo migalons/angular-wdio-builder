@@ -1,3 +1,6 @@
+# 1.1.1:q!:q:
+Bump dependencies due to security issues
+
 # 1.1.0
 Bumping angular devkit to support angular 14
 

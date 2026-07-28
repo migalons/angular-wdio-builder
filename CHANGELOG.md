@@ -1,3 +1,14 @@
+# 1.1.4
+Security fixes:
+- Bump `js-yaml` to 3.15.0 (quadratic-CPU DoS via merge keys) — the prior
+  Dependabot bump only reached 3.14.2, one minor short of the actual patch.
+- Bump `brace-expansion` to 5.0.8 (unbounded-expansion OOM DoS); prior alerts
+  for this dependency were dismissed without the version ever being patched.
+- Bump `diff` to 4.0.4 (ReDoS in `parsePatch`/`applyPatch`).
+- Remove unused `jasmine-node` devDependency — it wasn't referenced by any
+  script (the test runner is `jasmine`) and pulled in a critical
+  command-injection vulnerability via `jasmine-growl-reporter` → `growl`.
+
 # 1.1.3
 Fix `TypeError: Launcher is not a constructor` when running against
 `@wdio/cli` v8.46+/v9. Those versions ship a CJS interop shim that exports

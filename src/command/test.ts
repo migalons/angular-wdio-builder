@@ -35,7 +35,7 @@ export const runWdioTest =  async ( options: Options, context: BuilderContext ):
             return Promise.resolve({"success": false, "error": `${options.devServerTarget} failed. Can not run command. Exiting`})
         }
     }
-    const Launcher = require('@wdio/cli').default;
+    const Launcher = getLauncher();
     const wdio = new Launcher(options.wdioConfig, options.wdioOptions);
 
     return wdio.run().then((code: number) => {
@@ -54,10 +54,22 @@ export default createBuilder(runWdioTest);
 
 function isWdioInstalled(): boolean {
     try {
-        // @ts-ignore
-        const Launcher = require('@wdio/cli').default;
+        getLauncher();
         return true;
     } catch (err) {
         return false;
     }
+}
+
+// wdio@7 (CJS) only exports a default export; wdio@8.46+/@9 (CJS interop
+// shim for their now-ESM package) only export a named `Launcher`. Support
+// both so the builder keeps working across the versions users have installed.
+function getLauncher(): any {
+    // @ts-ignore
+    const wdioCli = require('@wdio/cli');
+    const Launcher = wdioCli.Launcher || wdioCli.default;
+    if (!Launcher) {
+        throw new Error('@wdio/cli not installed. Can not run command. Exiting.');
+    }
+    return Launcher;
 }

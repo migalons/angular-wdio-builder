@@ -1,3 +1,9 @@
+# 1.1.3
+Fix `TypeError: Launcher is not a constructor` when running against
+`@wdio/cli` v8.46+/v9. Those versions ship a CJS interop shim that exports
+`Launcher` as a named export instead of `default` (v7's shape). The builder
+now resolves either shape, so v7, v8 and v9 all work. (#10)
+
 # 1.1.2
 Security fixes:
 - Bump `ajv` to 8.18.0 (ReDoS)

@@ -6,7 +6,7 @@ Enables include wdio laucher into angular workspace (angular.json). Replaces pro
 
 ## Peer dependencies
 
-- _@wdio/cli_
+- _@wdio/cli_ (v7, v8 and v9 are supported)
 
 wdio client is not installed. You must install this package by yourself, among other related packages (@wdio/sinc, services, plugins, etc.)
 

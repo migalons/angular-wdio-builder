@@ -41,7 +41,7 @@
     "minimatch": "^3.1.5",
     "semver": "^5.7.2",
     "underscore": "^1.13.8",
-    "js-yaml": "^3.15.0",
+    "js-yaml": "^3.15.2",
     "brace-expansion": "^5.0.8",
     "diff": "^4.0.4"
   }
